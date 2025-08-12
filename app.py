@@ -246,13 +246,13 @@ if not df_filtered.empty:
                 df_all_live.loc[df_all_live["id"] == selected_id, ["date","category","amount","notes"]] = [ed_date, ed_cat, ed_amt, ed_note]
                 save_data(df_all_live)
                 st.success("Record updated")
-                st.experimental_rerun()
+                st.rerun() if hasattr(st, 'rerun') else st.experimental_rerun()
 
             if del_btn:
                 df_all_live = df_all_live[df_all_live["id"] != selected_id]
                 save_data(df_all_live)
                 st.warning(f"Record #{selected_id} deleted")
-                st.experimental_rerun()
+                st.rerun() if hasattr(st, 'rerun') else st.experimental_rerun()
     else:
         st.info("Selected record not found (it may have been deleted).")
 else:
